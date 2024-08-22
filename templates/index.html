@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grades</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        background-color: #4CAF50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+    h2 {
+        color: #4CAF50;
+    }
+   input{
+    width: 20%;
+    padding: 9px;
+   }
+   
+    button {
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        width: 10%;
+    }
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+  
+    table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+   
+    .message {
+        text-align: center;
+        font-size: 1.2em;
+        color: #4CAF50;
+        margin: 20px;
+    }
+</style>
+<body>
+    <h1>Student Grades</h1>
+
+    <form action="/" method="post">
+        <input type="text" name="student_name" placeholder="Student Name" required>
+        <input type="number" name="subject_key" placeholder="Subject Key" required>
+        <input type="text" name="grade" placeholder="Grade" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Search by Name</h2>
+    <form action="/" method="get">
+        <input type="text" name="search_name" placeholder="Search by Name" value="{{ search_name }}">
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Filter by Grade</h2>
+    <form action="/" method="get">
+        <input type="text" name="filter_status" placeholder="Filter by Grade (PASS/FAIL)" value="{{ filter_status }}">
+        <button type="submit">Filter</button>
+    </form>
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+
+    <h2>Student Records</h2>
+    <table border="1">
+        <tr>
+            <th>Student Name</th>
+            <th>Subject Name</th>
+            <th>Grade</th>
+            <th>Remarks</th>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.student_name }}</td>
+            <td>{{ student.subject_name }}</td>
+            <td>{{ student.grade }}</td>
+            <td>{{ student.remarks }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
